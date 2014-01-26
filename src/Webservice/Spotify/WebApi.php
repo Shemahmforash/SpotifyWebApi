@@ -40,7 +40,7 @@ class WebApi {
         if($format == 'json' )
             $result = Json::decode($response->getBody());
         else
-            $result = $xml = simplexml_load_string($response->getBody());
+            $result = simplexml_load_string($response->getBody());
 
         return $result;
     }
