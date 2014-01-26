@@ -15,7 +15,19 @@ class WebApi {
         return sprintf("%s/%s/%s/%s.%s", $this->source, $service, $this->apiVersion, $method, $format);
     }
 
+    private function validate($service, $method, $format) {
+
+        if(!($service == 'search' || $service == 'lookout' ))
+            throw new \Exception("$service is not an acceptable service!");
+
+        if(!($format == 'json' || $format == 'xml' ))
+            throw new \Exception("$format is not an acceptable format!");
+    }
+
     public function get($service, $method, $format = "json", $parameters = array() ) {
+
+        $this->validate($service, $method, $format);
+
         $http = new Client();
         $http->setUri($this->createURI($service, $method, $format));
         $http->setOptions(array('sslverifypeer' => false));
@@ -25,7 +37,12 @@ class WebApi {
 
         $response = $http->send();
 
-        return Json::decode($response->getBody());
+        if($format == 'json' )
+            $result = Json::decode($response->getBody());
+        else
+            $result = $xml = simplexml_load_string($response->getBody());
+
+        return $result;
     }
 }
 ?>
