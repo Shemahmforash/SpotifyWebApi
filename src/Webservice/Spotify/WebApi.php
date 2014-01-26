@@ -1,5 +1,4 @@
 <?php
-
 namespace Webservice\Spotify;
 
 use Zend\Http\Client;
@@ -7,7 +6,7 @@ use Zend\Http\Headers;
 use Zend\Json\Json;
 
 class WebApi {
-    protected $source = "http://ws.spotify.com/";
+    protected $source = "http://ws.spotify.com";
 
     private $apiVersion = 1;
 
@@ -16,7 +15,7 @@ class WebApi {
         return sprintf("%s/%s/%s/%s.%s", $this->source, $service, $this->apiVersion, $method, $format);
     }
 
-    public function get($service, $format = "json", $method, $parameters = array() ) {
+    public function get($service, $method, $format = "json", $parameters = array() ) {
         $http = new Client();
         $http->setUri($this->createURI($service, $method, $format));
         $http->setOptions(array('sslverifypeer' => false));
@@ -25,9 +24,8 @@ class WebApi {
         $http->setParameterGet($parameters);
 
         $response = $http->send();
+
         return Json::decode($response->getBody());
     }
-
 }
-
 ?>
