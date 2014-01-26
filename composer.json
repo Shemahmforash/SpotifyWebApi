@@ -1,0 +1,29 @@
+{
+    "name": "spotify/webapi",
+    "description": "PHP library for abstracting the Spotify Web API",
+    "type": "library",
+    "license": "GPL-v3",
+    "keywords": [
+        "spotify",
+        "music"
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "zendframework/zend-http": "2.*,!=2.0.6",
+        "zendframework/zend-json": "2.*,!=2.0.6",
+        "zendframework/zend-i18n": "2.*,!=2.0.6"
+    },
+    "homepage": "https://developer.spotify.com/technologies/web-api/",
+    "authors": [
+        {
+            "name": "Carlos Rosão",
+            "email": "cmrosao@gmail.com",
+            "homepage": "http://about.me/carlosrosao"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "classmap": ["src/"]
+        }
+    }
+}
