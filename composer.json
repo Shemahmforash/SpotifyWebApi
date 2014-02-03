@@ -22,8 +22,12 @@
         }
     ],
     "autoload": {
-        "psr-0": {
-            "classmap": ["src/"]
-        }
+        "psr-0": "src/"
+        
+    },
+    "target-dir": "Webservice/Spotify",
+    "autoload": {
+        "psr-0": { "Webservice\\Spotify": "" },
+        "psr-4": {"": "src/"}
     }
 }
